@@ -36,9 +36,9 @@ class App extends React.Component {
       box: {},
       route: 'signin',
       isSignedIn: false,
-      loggedInUser: NULL
     }
   }
+  
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
