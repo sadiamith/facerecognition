@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt-nodejs');
 
 
 const app = express();
@@ -43,7 +44,7 @@ app.post('/signin', (req, res) => {
 app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
     database.users.push({
-        id: '124',
+        id: '125',
         name: name,
         email: email,
         password: password,
@@ -66,13 +67,15 @@ app.get('/profile/:id', (req, res) => {
         res.status(400).json('not found');
     }
 })
-app.put('/image', (req, res) => {
-    const { id } = req.params;
+
+app.post('/image', (req, res) => {
+    const { id } = req.body;
+
     let found = false;
     database.users.forEach(user => {
         if(user.id === id){
             found = true;
-            user.entries++
+            user.entries++;
             return res.json(user.entries);
         }
     })

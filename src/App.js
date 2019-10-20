@@ -14,6 +14,7 @@ const app = new Clarifai.App({
   apiKey: '9ba9e57ef6934363a0a07e4e947343c2'
  });
 
+
 const particlesOption = {
   particles: {
     number: {
@@ -34,7 +35,8 @@ class App extends React.Component {
       imageUrl: '',
       box: {},
       route: 'signin',
-      isSignedIn: false
+      isSignedIn: false,
+      loggedInUser: NULL
     }
   }
 
@@ -56,6 +58,8 @@ class App extends React.Component {
     console.log(box);
     this.setState({box: box});
   }
+
+  
 
   onInputChange = (event) => {
     this.setState({input: event.target.value})
