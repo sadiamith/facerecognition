@@ -35,22 +35,23 @@ app.post('/signin', (req, res) => {
 
 app.post('/register', (req, res) => {
     const {name, email, password} = req.body;
-    database('users').insert({
-        email: email,
+    database('users')
+    .returning('*')
+    .insert({
         name: name,
+        email: email,
         joined: new Date()
-    }).then(console.log)
-    //res.json(database.users[database.users.length-1]);
+    }).then(user => {
+        res.json(user[0]);
+    })
+    .catch(err => res.status(400).json('unable to register'))
 })
 
 app.get('/profile/:id', (req, res) => {
     const { id } = req.params;
     let found = false;
-    database.users.forEach(user => {
-        if(user.id === id){
-            found = true;
-            return res.json(user);
-        }
+    database.select('*').from('users').then(user => {
+        console.log(user);
     })
     if(!found){
         res.status(400).json('not found');
