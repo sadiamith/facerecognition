@@ -1,4 +1,4 @@
-(req, res) => {
+const handleRegister = (req, res, database, bcrypt) => {
     const {name, email, password} = req.body;
     const hash = bcrypt.hashSync(password);
     database.transaction(trx => {
@@ -24,3 +24,7 @@
     })
     .catch(err => res.status(400).json('unable to register'))
 }
+
+module.exports = {
+    handleRegister: this.handleRegister
+};
