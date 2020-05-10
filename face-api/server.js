@@ -29,7 +29,7 @@ app.post('/register', (req, res) => register.handleRegister(req, res, database, 
 app.get('/profile/:id', (req, res) => {profile.handleProfileGet(req, res, database)})
 app.put('/image', (req, res) => {image.handleImage(req, res, database)})
 
-app.listen(3001, ()=> {
+app.listen(process.env.PORT || 3001, ()=> {
     console.log('app is running on port 3001');
 })
 
