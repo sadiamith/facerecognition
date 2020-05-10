@@ -11,5 +11,5 @@ const handleImage = (req, res, database) => {
 }
 
 module.exports = {
-    handleImage: this.handleImage
+    handleImage: handleImage
 }
